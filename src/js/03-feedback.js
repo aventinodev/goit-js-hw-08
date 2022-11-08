@@ -10,10 +10,9 @@ refs.form.addEventListener('input', throttle(onSaveValue, 500));
 refs.form.addEventListener('submit', onFormSubmit);
 
 const FEEDBACK_KEY = 'feedback-form-state';
-const formData = {};
+let formData = {};
 let saveFormData = '';
 let storageData = '';
-let getStorageData = {};
 
 onInputSaveValue();
 
@@ -33,10 +32,18 @@ function onSaveValue(e) {
 
 function onInputSaveValue() {
   storageData = localStorage.getItem(FEEDBACK_KEY);
-  getStorageData = JSON.parse(storageData);
-
+  formData = JSON.parse(storageData);
   if (storageData) {
-    refs.input.value = getStorageData.email;
-    refs.textArea.value = getStorageData.message;
+    refs.input.value = formData.email;
+    refs.textArea.value = formData.message;
   }
+
+  // if (formData) {
+  //   for (name of Object.keys(formData)) {
+  //     let inputEl = refs.form.querySelector(`[name="${name}"]`);
+  //     if (inputEl) {
+  //       inputEl = formData[name];
+  //     }
+  //   }
+  // }
 }
