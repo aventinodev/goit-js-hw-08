@@ -19,7 +19,7 @@ onInputSaveValue();
 function onFormSubmit(e) {
   e.preventDefault();
   console.log(formData);
-  refs.form.reset();
+  e.currentTarget.reset();
   localStorage.removeItem(FEEDBACK_KEY);
 }
 
@@ -33,17 +33,16 @@ function onSaveValue(e) {
 
 function onInputSaveValue() {
   storageData = localStorage.getItem(FEEDBACK_KEY);
-  formData = JSON.parse(storageData);
 
   if (storageData) {
-    // refs.input.value = formData.email;
-    // refs.textArea.value = formData.message;
+    formData = JSON.parse(storageData);
+    //   refs.input.value = formData.email;
+    //   refs.textArea.value = formData.message;
     // }
-
     for (name of Object.keys(formData)) {
       let inputEl = refs.form.querySelector(`[name="${name}"]`);
       if (inputEl) {
-        inputEl.value = formData[name];
+        inputEl = formData[name];
       }
     }
   }
