@@ -38,10 +38,10 @@ function onInputSaveValue() {
   if (storageData) {
     formData = JSON.parse(storageData);
 
-    for (name of Object.keys(formData)) {
-      let inputEl = refs.form.querySelector(`[name="${name}"]`);
+    for (key of Object.keys(formData)) {
+      let inputEl = refs.form.querySelector(`[name="${key}"]`);
       if (inputEl) {
-        inputEl.value = formData[name];
+        inputEl.value = formData[key];
       }
     }
   }
