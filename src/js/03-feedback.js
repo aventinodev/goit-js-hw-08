@@ -21,6 +21,7 @@ function onFormSubmit(e) {
   console.log(formData);
   e.currentTarget.reset();
   localStorage.removeItem(FEEDBACK_KEY);
+  formData = {};
 }
 
 function onSaveValue(e) {
@@ -36,13 +37,11 @@ function onInputSaveValue() {
 
   if (storageData) {
     formData = JSON.parse(storageData);
-    //   refs.input.value = formData.email;
-    //   refs.textArea.value = formData.message;
-    // }
+
     for (name of Object.keys(formData)) {
       let inputEl = refs.form.querySelector(`[name="${name}"]`);
       if (inputEl) {
-        inputEl = formData[name];
+        inputEl.value = formData[name];
       }
     }
   }
