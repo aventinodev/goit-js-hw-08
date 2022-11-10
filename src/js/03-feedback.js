@@ -38,7 +38,7 @@ function onInputSaveValue() {
   if (storageData) {
     formData = JSON.parse(storageData);
 
-    for (key of Object.keys(formData)) {
+    for (let key of Object.keys(formData)) {
       let inputEl = refs.form.querySelector(`[name="${key}"]`);
       if (inputEl) {
         inputEl.value = formData[key];
